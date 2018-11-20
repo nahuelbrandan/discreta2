@@ -1,0 +1,55 @@
+1) Tienen #define SIZE 2000000
+es decir no pueden trabajar con archivos con mas de 2 millones de vértices.
+
+El AÑO PASADO habíamos dado un limite de 2M de vertices. Este año no.
+
+Nahuel me dijo:
+
+"Si, es el más grave de los que conozco, si es sólo eso entonces va bien."
+
+Bueno, no no van bien, aunque ese fuese el único error, por la forma en que usan ese número.
+
+Ademas que su programa fallaría con grafos con muchos vértices, es un completo desperdicio de memoria
+para grafos con, digamos, 50 vertices.
+
+y no pienso correr ningún programa que tenga esto con SIZE 2000000
+
+struct DataItem* hashArray[SIZE];
+
+Me pregunto como puede ser que a ustedes no les haya provocado eso un stack overflow.
+(son, si no me equivoco, 16MB. Stack size varia pero en general esta entre 1MB y 8MB, aunque es cierto
+que puede ser mucho mas. Pero ustedes no pueden saber en que sistema se va a correr su programa).
+
+Ademas,  global variable? really? En alumnos de Famaf de tercer año?
+
+
+Y a pesar de que es un error grave...no es el mas grave. Otros:
+
+2) En las especificaciones del proyecto se dice claramente que 
+la lectura debe ser por stdin, cosa que ustedes no hacen.
+
+
+3) ¿Que es esto? :
+g = malloc(sizeof(struct WinterSt) + sizeof(struct successors *) * (n-1));
+
+¿Parece como que estan desperdiciando memoria, o hay algo que no estoy entendiendo?
+(la memoria que necesitan la piden luego:
+for i de : g->alist[i] = malloc(sizeof(struct successors));
+asi que la memoria extra que piden en g = malloc(sizeof(struct WinterSt) + sizeof(struct successors *) * (n-1));
+parece memoria desperdiciada. Expliquen.
+
+
+
+4) Tienen mal OrdenNatural (no esta mal SIEMPRE, pero tal como la programaron, con algunos
+grafos no va a ordenar correctamente los vertices. Falta de testeo adecuado).
+
+5) En cambio el OrdenWelshPowell SIEMPRE da mal, asi que no sé que testearon. (nada, parece)
+
+6) La peor de todas es ReordenManteniendoBloqueColores que sólo tiene bien programada una de las opciones.
+Esto es clara falta de testeo.
+
+Puede haber todavía mas errores, (en particular, su código, como está, produciría un segfault, pero creo que cuando solucionen
+los problemas que indiqué arriba se va a solucionar solo... o no, veré).
+ De todos modos con todos los errores que tienen ya tienen 2 puntos de descuento.
+
+Reenvienlo corregido y revisen no tener mas errores.
